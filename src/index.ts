@@ -85,5 +85,40 @@ const a1InfoObj = {
 }
 a1InfoObj[s5]='haha'
 //for in 的時候遍歷不出來
-//Object.keys() 也獲取不到
-//Object.getOwnPropertyNames() 獲取不到
+//Object.keys() 也獲取不到Symbol
+//Object.getOwnPropertyNames() 獲取不到Symbol
+//JSON.stringify(a1InfoObj) 獲取不到Symbol
+//只有
+console.log(Object.getOwnPropertySymbols(a1InfoObj))
+console.log(Reflect.ownKeys(a1InfoObj)) //可以獲取所有包括symbol
+
+//可以用Symbol 作為對象私有屬性
+
+//Symbol.for()
+//Symbol.keyFor()
+
+const s6 = Symbol('zhizhang')
+const s7 = Symbol('zhizhang')
+
+const s8 = Symbol.for('zhizhang')
+//在全局範圍搜索是否有 創建 zhizhang 字符串的 Symbol
+const s9 = Symbol.for('zhizhang')
+
+//s8 === s9 true
+
+Symbol.keyFor(s8) // 傳入 Symbol.for 在全局註冊的標識,如果是 Symbol註冊 傳入的將會undefined
+
+/**
+ * 11 個內置的 Symbol值
+ * 
+ * 
+ */
+
+//Symbol.hasInstance 
+//當你給一個對象 設置 Symbol.hasInstance 屬性名的時候
+//
+const objSy1 = {
+    [Symbol.hasInstance] (otherObj:any) {
+        console.log(otherObj)
+    }
+}
