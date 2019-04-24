@@ -122,3 +122,5 @@ const objSy1 = {
         console.log(otherObj)
     }
 }
+
+
